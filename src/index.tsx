@@ -1,4 +1,5 @@
 import React, {MouseEventHandler, TouchEventHandler, useEffect, useRef, useState} from 'react';
+import { ReactNode } from "react";
 
 import './styles.scss';
 
@@ -21,6 +22,8 @@ enum MODE {
 
 interface Props {
     firstImage: Image,
+    ComponentBefore: ReactNode,
+    ComponentAfter: ReactNode,
     secondImage: Image,
     currentPercentPosition?: number,
     className?: string,
@@ -103,6 +106,8 @@ export default function BeforeAfterSlider({
     firstImage,
     secondImage,
     className,
+    ComponentAfter,
+    ComponentBefore,
     withResizeFeel = true,
     currentPercentPosition,
     onVisible,
@@ -248,23 +253,32 @@ export default function BeforeAfterSlider({
             {...(!feelsOnlyTheDelimiter ? onClickHandlers : {})}
         >
             <div className="before-after-slider__first-photo-container">
-                <img
-                    src={firstImage.imageUrl}
-                    onLoad={onFirstImageLoad}
-                    draggable={false}
-                    alt={firstImage.alt}
-                />
+                {
+                    firstImage ? 
+                    <img
+                        src={firstImage.imageUrl}
+                        onLoad={onFirstImageLoad}
+                        draggable={false}
+                        alt={firstImage.alt}
+                    /> : 
+                    ComponentBefore
+                }
+
             </div>
             {Boolean(imagesWidth) && (
                 <>
                     <div className="before-after-slider__second-photo-container" style={secondImgContainerStyle}>
+                        {
+                            firstImage ?                         
                         <img
                             style={imgStyles}
                             src={secondImage.imageUrl}
                             onLoad={onImageLoad}
                             draggable={false}
                             alt={secondImage.alt}
-                        />
+                        /> :
+                        ComponentAfter
+                    }
                     </div>
                     <div
                         className="before-after-slider__delimiter"

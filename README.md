@@ -1,4 +1,4 @@
-# React before after slider component
+# NextJS before after slider component (Updated)
 Simple slider component for comparing images. Before and after.
 
 [![screencast demo](./screencast.gif)](./screencast.gif)
@@ -7,16 +7,16 @@ Simple slider component for comparing images. Before and after.
 https://smeleshkin.github.io/react-before-after-slider-component/
 ## Build
 npm run build:npm
-## Basic usage
+## Basic usage 
 ```
-npm install react-before-after-slider-component --save
+npm install next-before-after-slider-component --save
 ```
 
-Then use it in your app:
+Then use it in your Next JS app:
 ```js
-import React from 'react';
-import ReactBeforeSliderComponent from 'react-before-after-slider-component';
-import 'react-before-after-slider-component/dist/build.css';
+
+import ReactBeforeSliderComponent from 'next-before-after-slider-component';
+import 'next-before-after-slider-component/dist/build.css';
 
 const FIRST_IMAGE = {
   imageUrl: 'https://example.com/.../some-image.jpg'
@@ -28,6 +28,13 @@ const SECOND_IMAGE = {
 <ReactBeforeSliderComponent
     firstImage={FIRST_IMAGE}
     secondImage={SECOND_IMAGE}
+/>
+
+ /* Or use NODE Element */
+
+<ReactBeforeSliderComponent
+    ComponentBefore={<Image src="..."/>}
+    ComponentAfter={<Image src="..."/>}
 />
 /* ... */
 ```
@@ -46,6 +53,8 @@ const SECOND_IMAGE = {
 | `onChangePercentPosition`  | false     | function            |         | On delimiter position update callback. Has new position parameter.
 | `feelsOnlyTheDelimiter`    | false     | function            | false   | Only the separator feels clicks. Not any zone of the component.
 | `delimiterIconStyles`      | false     | React.CSSProperties |         | Custom styles of delimiter icon. E.g. for a logo. See "Custom logo example"
+| `ComponentBefore`          | false     | React.Node          |         | Add a Custom React Node or NextJS Image tag (Exemple : < Image src="..." alt="..." >)
+| `ComponentAfter`           | false     | React.Node          |         | Add a Custom React Node or NextJS Image tag (Exemple : < Image src="..." alt="..." >)
 
 ## Specific Types
 
